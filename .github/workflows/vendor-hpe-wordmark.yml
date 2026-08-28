@@ -27,7 +27,19 @@ jobs:
           if fetch_exact "https://corsproxy.io/?url=$ORIGIN"; then
             exit 0
           fi
-          fetch_exact "https://r.jina.ai/http://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg"
+          curl --fail --location --max-time 30 \
+            "https://r.jina.ai/http://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg" \
+            --output hpe-response.txt
+          python3 - <<'PY'
+          from pathlib import Path
+
+          response = Path("hpe-response.txt").read_text()
+          start = response.index("<svg")
+          end = response.index("</svg>", start) + len("</svg>")
+          Path("hpe-wordmark.svg").write_text(response[start:end])
+          PY
+          test "$(wc -c < hpe-wordmark.svg)" -eq 267
+          grep -q "<svg" hpe-wordmark.svg
 
       - name: Upload exact asset
         uses: actions/upload-artifact@v4
