@@ -14,17 +14,13 @@ jobs:
     steps:
       - name: Download from HPE
         run: |
-          SOURCE="https://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg"
-          TIMESTAMP="$(
-            curl --fail --location --max-time 30 \
-              "https://web.archive.org/cdx/search/cdx?url=$SOURCE&output=json&filter=statuscode:200&filter=mimetype:image/svg%2Bxml&fl=timestamp&limit=1&from=2025" |
-              python3 -c 'import json,sys; print(json.load(sys.stdin)[1][0])'
-          )"
-          curl --fail --location --max-time 30 \
-            "https://web.archive.org/web/${TIMESTAMP}id_/$SOURCE" \
-            --output hpe-wordmark.svg
-          test "$(wc -c < hpe-wordmark.svg)" -eq 267
-          grep -q "<svg" hpe-wordmark.svg
+          curl --fail --location --max-time 30 --get \
+            --data-urlencode "q=context:global file:logo-lm.svg" \
+            --data-urlencode "v=V3" \
+            "https://sourcegraph.com/search/stream" \
+            --output sourcegraph.txt
+          cat sourcegraph.txt
+          exit 1
 
       - name: Upload exact asset
         uses: actions/upload-artifact@v4
