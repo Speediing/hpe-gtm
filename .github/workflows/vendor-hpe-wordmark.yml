@@ -1,0 +1,28 @@
+name: Vendor official HPE wordmark
+
+on:
+  push:
+    branches:
+      - cursor/datadog-cro-template
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download from HPE
+        run: |
+          curl --fail --location --retry 3 \
+            https://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg \
+            --output hpe-wordmark.svg
+          test "$(wc -c < hpe-wordmark.svg)" -gt 100
+          grep -q "<svg" hpe-wordmark.svg
+
+      - name: Upload exact asset
+        uses: actions/upload-artifact@v4
+        with:
+          name: hpe-wordmark
+          path: hpe-wordmark.svg
+          if-no-files-found: error
