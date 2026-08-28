@@ -14,22 +14,20 @@ jobs:
     steps:
       - name: Download from HPE
         run: |
-          SOURCE="https://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg"
-          if ! curl --fail --location --http1.1 --compressed \
-            --connect-timeout 10 --max-time 30 \
-            --user-agent "Mozilla/5.0" \
-            --referer "https://www.hpe.com/" \
-            "$SOURCE" --output hpe-wordmark.svg &&
-            ! wget --timeout=30 --tries=1 \
-              --user-agent="Mozilla/5.0" \
-              --referer="https://www.hpe.com/" \
-              "$SOURCE" --output-document=hpe-wordmark.svg; then
-            curl --fail --location --max-time 30 \
-              "https://r.jina.ai/http://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg" \
-              --output hpe-wordmark.svg
+          fetch_exact() {
+            curl --fail --location --max-time 30 "$1" --output hpe-wordmark.svg
+            test "$(wc -c < hpe-wordmark.svg)" -eq 267
+            grep -q "<svg" hpe-wordmark.svg
+          }
+
+          ORIGIN="https%3A%2F%2Fwww.hpe.com%2Fapps%2Fhpeweb-ui%2Fimages%2Fgn-icons%2Flogo-lm.svg"
+          if fetch_exact "https://api.allorigins.win/raw?url=$ORIGIN"; then
+            exit 0
           fi
-          test "$(wc -c < hpe-wordmark.svg)" -eq 267
-          grep -q "<svg" hpe-wordmark.svg
+          if fetch_exact "https://corsproxy.io/?url=$ORIGIN"; then
+            exit 0
+          fi
+          fetch_exact "https://r.jina.ai/http://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg"
 
       - name: Upload exact asset
         uses: actions/upload-artifact@v4
