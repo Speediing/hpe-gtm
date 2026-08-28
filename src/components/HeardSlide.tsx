@@ -1,6 +1,7 @@
 import type { SlideCard } from "@/data/types";
 
 export function HeardSlide({
+  slides,
   size = "lg",
 }: {
   slides: SlideCard[];
@@ -10,11 +11,37 @@ export function HeardSlide({
   return (
     <div className={`leave leave-heard size-${size}`}>
       <article className="heard-slide">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/media/where-cursor-fits.jpg"
-          alt="Where Cursor fits. Six places Cursor adds leverage alongside Claude and Copilot."
-        />
+        <header className="heard-bar">
+          <span>HPE customer call brief</span>
+          <span>Draft for review</span>
+        </header>
+        <div className="heard-main">
+          <h3>Customer priorities</h3>
+          <ol>
+            {slides
+              .filter((slide) => slide.voice === "them")
+              .map((slide) => (
+                <li key={slide.n}>
+                  <p className="heard-tag">{slide.kicker}</p>
+                  <p className="heard-quote">
+                    <strong>{slide.title}.</strong> {slide.body}
+                  </p>
+                </li>
+              ))}
+          </ol>
+        </div>
+        <div className="heard-map">
+          <p>HPE path</p>
+          <ul>
+            {slides
+              .filter((slide) => slide.voice !== "them")
+              .map((slide) => (
+                <li key={slide.n}>
+                  <strong>{slide.title}.</strong> {slide.body}
+                </li>
+              ))}
+          </ul>
+        </div>
       </article>
     </div>
   );

@@ -1,18 +1,28 @@
+import type { CSSProperties } from "react";
 import { FLEET, type FleetBot } from "@/data/fleet";
 
-function initials(bot: FleetBot) {
-  if (bot.mark) return bot.mark;
-  const parts = bot.name.split(/\s+/).filter(Boolean);
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return `${parts[0][0] || ""}${parts[parts.length - 1][0] || ""}`.toUpperCase();
-}
+function ComputerMark({ bot }: { bot: FleetBot }) {
+  if (bot.seat) {
+    return (
+      <span className="org-seat" aria-hidden>
+        {bot.mark}
+      </span>
+    );
+  }
 
-function isLight(hex: string) {
-  if (!hex.startsWith("#") || hex.length < 7) return false;
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return (r * 299 + g * 587 + b * 114) / 1000 > 180;
+  return (
+    <span
+      className="org-computer"
+      style={{ "--computer-color": bot.color } as CSSProperties}
+      aria-hidden
+    >
+      <svg viewBox="0 0 32 28">
+        <rect x="3" y="3" width="26" height="17" rx="2" />
+        <path d="M11 25h10M16 20v5" />
+        <circle cx="24" cy="8" r="2" />
+      </svg>
+    </span>
+  );
 }
 
 function Box({
@@ -25,16 +35,7 @@ function Box({
   const className = chief ? "org-box is-chief" : "org-box";
   const body = (
     <>
-      <span
-        className="org-avatar"
-        style={{
-          background: bot.color,
-          color: isLight(bot.color) ? "#111" : "#fff",
-        }}
-        aria-hidden
-      >
-        {initials(bot)}
-      </span>
+      <ComputerMark bot={bot} />
       <span className="org-name">{bot.name}</span>
       <span className="org-blurb">{bot.blurb}</span>
     </>
@@ -59,10 +60,10 @@ export function RosterChart() {
 
   return (
     <section id="roster" className="roster">
-      <h2>A background team for every sales rep</h2>
+      <h2>A computer for each part of the deal</h2>
       <p className="section-lede">
         The work itself is the trigger. A call starts, an email lands, or an
-        account enters the list — and the right agent picks it up. They keep
+        account enters the list. The right agent picks it up. They keep
         working after the laptop closes. Drafts stay drafts until the rep sends.
       </p>
 

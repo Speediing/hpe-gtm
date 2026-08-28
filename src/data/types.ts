@@ -57,7 +57,7 @@ export type StoryVisual =
       kind: "live-transcript";
       timestamp: string;
       speaker: string;
-      quote: string;
+      note: string;
       signals: string[];
     }
   | {

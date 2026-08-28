@@ -8,15 +8,23 @@ export function BrandLockup({
     <div className={`brand-lockup brand-lockup-${size}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/brand/datadog-wordmark.svg"
-        alt="Datadog"
-        className="brand-dd"
+        src="/brand/hpe-wordmark.svg"
+        alt="Hewlett Packard Enterprise"
+        className="brand-hpe"
+        width="512"
+        height="146"
       />
       <span className="brand-times" aria-hidden>
         ×
       </span>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/brand/spacexai.svg" alt="SpaceXAI" className="brand-sxai" />
+      <img
+        src="/brand/spacexai.svg"
+        alt="SpaceXAI"
+        className="brand-sxai"
+        width="1294"
+        height="158"
+      />
     </div>
   );
 }

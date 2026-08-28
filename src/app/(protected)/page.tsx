@@ -1,7 +1,9 @@
 import { CompareTable } from "@/components/CompareTable";
+import { HeroDemo } from "@/components/HeroDemo";
 import { HeroTelemetry } from "@/components/HeroTelemetry";
 import { JobSection } from "@/components/JobSection";
 import { QuoteWall } from "@/components/QuoteWall";
+import { RosterChart } from "@/components/RosterChart";
 import { SiteNav } from "@/components/SiteNav";
 import { JOBS } from "@/data/jobs";
 
@@ -15,32 +17,28 @@ export default function HomePage() {
           src="/brand/watercolor-pad.png"
           alt=""
         />
+        <div className="hero-paper-band">
+          <span>HPE sales</span>
+          <strong>Persistent agents with their own computers</strong>
+        </div>
         <SiteNav />
       </div>
 
       <div className="report">
         <div className="report-hero">
           <HeroTelemetry />
-          <section className="hero">
-            <div>
-              <p className="eyebrow">A proactive agent for every Datadog rep</p>
-              <h1>The agents that work while your reps sell.</h1>
-              <p className="hero-intro">
-                Grok Bot listens to calls, watches the inbox, and researches
-                accounts in the background. Work triggers it — not another
-                prompt.
-              </p>
-            </div>
-          </section>
+          <HeroDemo />
 
           <section className="usecase-framing">
             <p className="eyebrow">Three sample use cases</p>
             <h2>
-              Grok Bot gives every seller their own fleet of always-available
-              agent teammates. Anything your sellers do today can be done
-              through Grok Bot.
+              Give every HPE seller a fleet of agents with their own
+              computers.
             </h2>
-            <p>These are three examples from millions — not the boundary.</p>
+            <p>
+              These are examples of the work an agent can start, finish, and
+              bring back for review.
+            </p>
           </section>
 
           <div className="metric-grid">
@@ -58,6 +56,7 @@ export default function HomePage() {
               </a>
             ))}
           </div>
+          <RosterChart />
         </div>
 
         <div id="jobs">
@@ -79,15 +78,13 @@ export default function HomePage() {
 
       <footer className="site-footer">
         <div>
-          <p className="footer-title">Cursor for Datadog</p>
-          <p>Grok Bot for Datadog sales</p>
+          <p className="footer-title">Cursor for Hewlett Packard Enterprise</p>
+          <p>Grok Bot for HPE sales</p>
         </div>
         <address className="footer-contact">
-          <p>Datadog&apos;s existing Cursor contact</p>
-          <strong>Madeline Ingleby</strong>
-          <a href="mailto:madeline.ingleby@cursor.com">
-            madeline.ingleby@cursor.com
-          </a>
+          <p>HPE&apos;s Cursor contact</p>
+          <strong>Brian Fox</strong>
+          <a href="mailto:brian.fox@cursor.com">brian.fox@cursor.com</a>
         </address>
       </footer>
     </main>

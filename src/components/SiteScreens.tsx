@@ -1,7 +1,7 @@
 import type { Artifact, DemoMessage, SlideCard } from "@/data/types";
 import type { ComputerBeat } from "@/data/screens";
 import { CLIPS } from "@/data/clips";
-import { ACME_TAIL_SLIDES } from "@/data/jobs";
+import { HPE_CALL_SLIDES } from "@/data/jobs";
 import { HeardSlide } from "./HeardSlide";
 
 function asSlides(artifact?: Artifact) {
@@ -135,26 +135,27 @@ function GranolaScreen({ account }: { account: string }) {
       <p className="site-time">Still on the call · Granola in</p>
       <ul>
         <li>
-          <span>14:12</span> Start with APM + Logs in one team. Not a product
-          tour.
+          <span>Now</span> Connect the hybrid cloud plan with the customer
+          operating model.
         </li>
         <li>
-          <span>14:18</span> Security: SSO and an audit trail before any extra
-          products.
+          <span>Now</span> Bring the security and governance owner to the next
+          meeting.
         </li>
         <li>
-          <span>14:21</span> Soft yes on a Bits AI trial if those two are named.
+          <span>Now</span> Use approved HPE material for each product question.
         </li>
         <li>
-          <span>14:24</span> Cost mentioned once. RUM not in the room.
+          <span>Now</span> Keep the deployment boundary open until the
+          specialist confirms it.
         </li>
         <li>
-          <span>14:28</span> Your contact will take a Tuesday with a security
-          co-owner.
+          <span>Now</span> The next meeting needs the customer program owner and
+          the right HPE specialists.
         </li>
         <li>
-          <span>14:31</span> Use cases named live on the demo. Sev-2 story,
-          one team, SSO as the gate.
+          <span>Now</span> The brief should show priorities, owners, proof, and
+          the next action.
         </li>
       </ul>
     </div>
@@ -171,7 +172,7 @@ function FigmaScreen({
   const slides = asSlides(artifact);
   const packet = artifact?.kind === "packet" ? artifact : null;
   const pager = asOnePager(artifact);
-  const cards: SlideCard[] = slides?.cards ?? ACME_TAIL_SLIDES;
+  const cards: SlideCard[] = slides?.cards ?? HPE_CALL_SLIDES;
 
   return (
     <div className="site site-figma">
@@ -184,7 +185,7 @@ function FigmaScreen({
               ? `${account} one-pager`
               : packet
                 ? `${account} inside note`
-                : `${account} North Star`}
+                : `${account} customer brief`}
         </strong>
         <em>Draft</em>
       </header>
@@ -221,16 +222,16 @@ function GongScreen({ account }: { account: string }) {
       <header>
         <strong>Gong</strong>
         <span>
-          {account} · first meeting · 32 min
+          {account} · customer meeting
         </span>
       </header>
       <div className="gong-recap">
         <h4>Call recap</h4>
         <ul>
-          <li>They have APM + Logs</li>
-          <li>Security lead in the room</li>
-          <li>Cost mentioned once</li>
-          <li>No one who can sign was on the call</li>
+          <li>Hybrid cloud priority confirmed</li>
+          <li>Security question still open</li>
+          <li>Networking owner to confirm</li>
+          <li>Next meeting owners not final</li>
         </ul>
       </div>
     </div>
@@ -251,51 +252,51 @@ function SfdcAccountScreen({ account }: { account: string }) {
       </div>
       <dl className="sfdc-fields">
         <div>
-          <dt>Has now</dt>
-          <dd>APM + Logs</dd>
+          <dt>Hybrid cloud</dt>
+          <dd>In discovery</dd>
         </div>
         <div>
-          <dt>Security lead</dt>
-          <dd>In first meeting</dd>
+          <dt>Networking</dt>
+          <dd>Owner to confirm</dd>
         </div>
         <div>
-          <dt>Cost</dt>
-          <dd>Mentioned once</dd>
+          <dt>Security</dt>
+          <dd>Question open</dd>
         </div>
         <div>
-          <dt>Who can sign</dt>
-          <dd>Not confirmed</dd>
+          <dt>Customer sponsor</dt>
+          <dd>To confirm</dd>
         </div>
       </dl>
       <table className="sfdc-related">
-        <caption>Next 90 days</caption>
+        <caption>Possible HPE paths</caption>
         <thead>
           <tr>
-            <th>Product</th>
+            <th>Solution area</th>
             <th>Owner</th>
-            <th>Window</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Bits AI</td>
-            <td>Platform eng manager</td>
-            <td>Day 15 to 45</td>
+            <td>HPE GreenLake</td>
+            <td>Hybrid cloud specialist</td>
+            <td>Map to need</td>
           </tr>
           <tr>
-            <td>Cloud SIEM</td>
-            <td>Security lead</td>
-            <td>Day 15 to 45</td>
+            <td>HPE Aruba Networking</td>
+            <td>Networking specialist</td>
+            <td>Owner needed</td>
           </tr>
           <tr>
-            <td>Cost</td>
-            <td>FinOps alias</td>
-            <td>Day 45 to 90</td>
+            <td>HPE Compute</td>
+            <td>Compute specialist</td>
+            <td>Scope open</td>
           </tr>
           <tr>
-            <td>RUM</td>
-            <td>Frontend guild</td>
-            <td>Day 45 to 90</td>
+            <td>Security</td>
+            <td>Solution architect</td>
+            <td>Source answer</td>
           </tr>
         </tbody>
       </table>
@@ -320,29 +321,29 @@ function SfdcOppScreen({
       <div className="sfdc-title">
         <p>Opportunity</p>
         <h3>
-          {account} · $1.4M
+          {account} opportunity
         </h3>
       </div>
       <dl className="sfdc-fields">
         <div>
           <dt>Stage</dt>
-          <dd>4 · this quarter</dd>
+          <dd>Discovery</dd>
         </div>
         <div className={highlight ? "gap" : undefined}>
-          <dt>Signer meeting</dt>
-          <dd>None on calendar</dd>
+          <dt>Customer sponsor</dt>
+          <dd>Not confirmed</dd>
         </div>
         <div className={highlight ? "gap" : undefined}>
-          <dt>Legal</dt>
-          <dd>Slow · no dated path</dd>
+          <dt>Technical proof</dt>
+          <dd>Open questions remain</dd>
         </div>
         <div className={highlight ? "gap" : undefined}>
-          <dt>Inside contact</dt>
-          <dd>Likes us · weak map</dd>
+          <dt>Customer map</dt>
+          <dd>Needs owner review</dd>
         </div>
         <div className={highlight ? "gap" : undefined}>
-          <dt>Cloud SIEM</dt>
-          <dd>Not in the story</dd>
+          <dt>Next meeting</dt>
+          <dd>Owners not final</dd>
         </div>
       </dl>
     </div>
@@ -360,22 +361,22 @@ function SheetsScreen({
   const rows = table
     ? table.rows
     : [
-        [account, "Inside contact", "Signer TBD", "APM + Logs", "Tue SIEM"],
-        ["Globex", "VP Eng", "CISO", "APM + Logs", "First meeting"],
-        ["Initech", "SRE lead", "CTO", "APM + Logs", "Bits AI"],
-        ["Umbrella", "Sec eng", "CISO", "APM + Logs", "Open source drill"],
-        ["Hooli", "Platform", "Signer TBD", "APM + Logs", "Cost later"],
+        [account, "Program owner", "To verify", "Hybrid cloud", "First meeting"],
+        ["Sample account", "Cloud owner", "To verify", "Networking", "Research"],
+        ["Sample account", "IT leader", "To verify", "Compute", "Research"],
+        ["Sample account", "Security owner", "To verify", "Security", "Research"],
+        ["Sample account", "Platform owner", "To verify", "Hybrid cloud", "Research"],
       ];
   const cols = table
     ? table.columns
-    : ["Account", "Inside contact", "Who can sign", "Start with", "Next"];
+    : ["Account", "Likely owner", "Verified", "HPE path", "Next"];
 
   return (
     <div className="site site-sheets">
       <header>
         <span className="sheets-mark">Sheets</span>
         <strong>
-          {table ? `${account} next 90 days` : "5 accounts x 5 prospects"}
+          {table ? `${account} next actions` : "Sample account research"}
         </strong>
       </header>
       <table>
@@ -421,7 +422,7 @@ function GmailScreen({
       </p>
       <p>
         <span>Subject</span>
-        {artifact?.subject || `${account} / Datadog`}
+        {artifact?.subject || `${account} / HPE`}
       </p>
       <div>{artifact?.body || "Draft parked here until you tap Send?"}</div>
     </div>
@@ -472,7 +473,7 @@ function GdocScreen({
           {forecast
             ? `${account} forecast`
             : talks
-              ? "Bits AI talk tracks"
+              ? "HPE talk tracks"
               : packet
                 ? packet.title
                 : onePager?.title || `${account} brief`}
@@ -514,26 +515,26 @@ function ResearchScreen({ account }: { account: string }) {
   return (
     <div className="site site-research">
       <header>
-        <strong>{account}.com</strong>
-        <span>Public · last 30 days</span>
+        <strong>{account}</strong>
+        <span>Public sources</span>
       </header>
-      <p className="site-time">Researching the account · not a sequence</p>
+      <p className="site-time">Researching the account · facts to verify</p>
       <ul>
         <li>
-          <span>Status</span> Sev-2, 14 days ago. 47 minutes to name the failing
-          service. Postmortem still says they jumped three tools.
+          <span>Company site</span> Infrastructure program found. Scope still
+          needs confirmation.
         </li>
         <li>
-          <span>Careers</span> Staff SRE JD: experience stitching APM and logs
-          across teams. Posted this month.
+          <span>Careers</span> Hybrid cloud and networking roles found. This is
+          a signal, not proof of budget.
         </li>
         <li>
-          <span>Blog</span> We outgrew homegrown dashboards. No named
-          replacement.
+          <span>Company news</span> Current infrastructure work found. Add the
+          source to the account brief.
         </li>
         <li>
-          <span>Org</span> VP Eng owns time-to-fix. Platform director sits on
-          that stitch.
+          <span>Account history</span> No recent customer meeting found. Keep
+          the first touch narrow.
         </li>
       </ul>
     </div>
@@ -557,7 +558,7 @@ function LinkedInScreen({
       </header>
       <p>
         <span>To</span>
-        {artifact?.to || `${account} VP Eng`}
+        {artifact?.to || `${account} infrastructure leader`}
         {artifact?.role ? ` · ${artifact.role}` : ""}
       </p>
       <div>{artifact?.body || "InMail parked here until you tap Send."}</div>
