@@ -14,7 +14,8 @@ jobs:
     steps:
       - name: Download from HPE
         run: |
-          curl --fail --location --retry 3 \
+          curl --fail --location --http1.1 --retry 3 --retry-all-errors \
+            --user-agent "Mozilla/5.0 (compatible; HPE-GTM-asset-vendor/1.0)" \
             https://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg \
             --output hpe-wordmark.svg
           test "$(wc -c < hpe-wordmark.svg)" -gt 100
