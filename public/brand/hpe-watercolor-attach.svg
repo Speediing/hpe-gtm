@@ -1,0 +1,15 @@
+<svg width="520" height="420" viewBox="0 0 520 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="bleed" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.03" numOctaves="4" seed="39" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="23"/>
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+  <g filter="url(#bleed)">
+    <path d="M41 176C87 68 212 7 327 44C442 82 510 194 469 297C428 400 265 441 147 386C29 330 8 253 41 176Z" fill="#01A982" fill-opacity="0.34"/>
+    <path d="M178 0C271 5 379 84 396 181C414 279 330 363 238 366C145 368 64 293 75 198C86 104 114-4 178 0Z" fill="#143F52" fill-opacity="0.34"/>
+    <path d="M284 143C351 106 454 135 487 203C520 271 471 368 399 392C327 417 244 358 236 282C228 207 242 166 284 143Z" fill="#F0B88E" fill-opacity="0.5"/>
+  </g>
+  <path d="M77 95L421 345M90 344L427 88" stroke="#FFFDF6" stroke-opacity="0.32"/>
+</svg>

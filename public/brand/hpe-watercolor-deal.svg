@@ -1,0 +1,19 @@
+<svg width="520" height="420" viewBox="0 0 520 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="bleed" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="turbulence" baseFrequency="0.022" numOctaves="3" seed="27" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="21"/>
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+  <g filter="url(#bleed)">
+    <ellipse cx="271" cy="205" rx="211" ry="155" fill="#143F52" fill-opacity="0.35"/>
+    <path d="M87 343C43 269 69 133 146 76C227 16 361 30 427 115C492 200 451 342 352 388C253 434 132 417 87 343Z" fill="#01A982" fill-opacity="0.4"/>
+    <path d="M-20 68C103 27 202 75 246 163C290 251 256 357 178 429H-20V68Z" fill="#D7FFF1" fill-opacity="0.74"/>
+  </g>
+  <g stroke="#FFFDF6" stroke-opacity="0.42">
+    <circle cx="334" cy="158" r="91"/>
+    <circle cx="334" cy="158" r="63"/>
+    <path d="M63 301H394M109 334H442"/>
+  </g>
+</svg>

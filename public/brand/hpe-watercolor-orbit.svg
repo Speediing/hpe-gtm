@@ -1,0 +1,26 @@
+<svg width="1600" height="420" viewBox="0 0 1600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="wash" x="-20%" y="-60%" width="140%" height="220%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.009 0.035" numOctaves="3" seed="31" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="28"/>
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <linearGradient id="sweep" x1="0" y1="225" x2="1600" y2="225" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F0DF"/>
+      <stop offset="0.24" stop-color="#D7FFF1"/>
+      <stop offset="0.54" stop-color="#01A982"/>
+      <stop offset="0.8" stop-color="#143F52"/>
+      <stop offset="1" stop-color="#0B1713"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="420" fill="#F6F0DF"/>
+  <g filter="url(#wash)">
+    <path d="M-80 256C143 89 365 85 563 197C737 295 885 308 1075 195C1260 85 1443 70 1680 200V458H-80V256Z" fill="url(#sweep)" fill-opacity="0.86"/>
+    <path d="M-70 52C173 154 337 136 525 69C742-8 951 35 1105 116C1268 202 1439 191 1674 83V-64H-70V52Z" fill="#D7FFF1" fill-opacity="0.5"/>
+  </g>
+  <g stroke="#FFFDF6" stroke-opacity="0.28">
+    <ellipse cx="1190" cy="212" rx="318" ry="145"/>
+    <ellipse cx="1190" cy="212" rx="234" ry="105"/>
+    <path d="M101 132H740M220 167H879"/>
+  </g>
+</svg>
