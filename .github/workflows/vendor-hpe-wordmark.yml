@@ -15,31 +15,23 @@ jobs:
       - name: Download from HPE
         run: |
           fetch_exact() {
-            curl --fail --location --max-time 30 "$1" --output hpe-wordmark.svg
+            curl --fail --location --max-time 20 "$1" --output hpe-wordmark.svg
             test "$(wc -c < hpe-wordmark.svg)" -eq 267
             grep -q "<svg" hpe-wordmark.svg
           }
 
-          ORIGIN="https%3A%2F%2Fwww.hpe.com%2Fapps%2Fhpeweb-ui%2Fimages%2Fgn-icons%2Flogo-lm.svg"
-          if fetch_exact "https://api.allorigins.win/raw?url=$ORIGIN"; then
-            exit 0
-          fi
-          if fetch_exact "https://corsproxy.io/?url=$ORIGIN"; then
-            exit 0
-          fi
-          curl --fail --location --max-time 30 \
-            "https://r.jina.ai/http://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg" \
-            --output hpe-response.txt
-          python3 - <<'PY'
-          from pathlib import Path
-
-          response = Path("hpe-response.txt").read_text()
-          start = response.index("<svg")
-          end = response.index("</svg>", start) + len("</svg>")
-          Path("hpe-wordmark.svg").write_text(response[start:end])
-          PY
-          test "$(wc -c < hpe-wordmark.svg)" -eq 267
-          grep -q "<svg" hpe-wordmark.svg
+          ASSET="www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg"
+          ENCODED="https%3A%2F%2Fwww.hpe.com%2Fapps%2Fhpeweb-ui%2Fimages%2Fgn-icons%2Flogo-lm.svg"
+          for PROXY in \
+            "https://www-hpe-com.translate.goog/apps/hpeweb-ui/images/gn-icons/logo-lm.svg?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en" \
+            "https://cors.isomorphic-git.org/https://$ASSET" \
+            "https://api.codetabs.com/v1/proxy?quest=$ENCODED" \
+            "https://images.weserv.nl/?url=$ASSET&output=svg"; do
+            if fetch_exact "$PROXY"; then
+              exit 0
+            fi
+          done
+          exit 1
 
       - name: Upload exact asset
         uses: actions/upload-artifact@v4
