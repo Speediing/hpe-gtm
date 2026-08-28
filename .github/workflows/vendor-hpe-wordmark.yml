@@ -14,24 +14,17 @@ jobs:
     steps:
       - name: Download from HPE
         run: |
-          fetch_exact() {
-            curl --fail --location --max-time 20 "$1" --output hpe-wordmark.svg
-            test "$(wc -c < hpe-wordmark.svg)" -eq 267
-            grep -q "<svg" hpe-wordmark.svg
-          }
-
-          ASSET="www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg"
-          ENCODED="https%3A%2F%2Fwww.hpe.com%2Fapps%2Fhpeweb-ui%2Fimages%2Fgn-icons%2Flogo-lm.svg"
-          for PROXY in \
-            "https://www-hpe-com.translate.goog/apps/hpeweb-ui/images/gn-icons/logo-lm.svg?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en" \
-            "https://cors.isomorphic-git.org/https://$ASSET" \
-            "https://api.codetabs.com/v1/proxy?quest=$ENCODED" \
-            "https://images.weserv.nl/?url=$ASSET&output=svg"; do
-            if fetch_exact "$PROXY"; then
-              exit 0
-            fi
-          done
-          exit 1
+          SOURCE="https://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg"
+          TIMESTAMP="$(
+            curl --fail --location --max-time 30 \
+              "https://web.archive.org/cdx/search/cdx?url=$SOURCE&output=json&filter=statuscode:200&filter=mimetype:image/svg%2Bxml&fl=timestamp&limit=1&from=2025" |
+              python3 -c 'import json,sys; print(json.load(sys.stdin)[1][0])'
+          )"
+          curl --fail --location --max-time 30 \
+            "https://web.archive.org/web/${TIMESTAMP}id_/$SOURCE" \
+            --output hpe-wordmark.svg
+          test "$(wc -c < hpe-wordmark.svg)" -eq 267
+          grep -q "<svg" hpe-wordmark.svg
 
       - name: Upload exact asset
         uses: actions/upload-artifact@v4
