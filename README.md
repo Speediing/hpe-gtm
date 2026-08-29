@@ -15,7 +15,12 @@ Open [http://localhost:3000](http://localhost:3000). The preview password is
 
 ## Brand asset
 
-`public/brand/hpe-wordmark.svg` is vendored from HPE's official site:
+`public/brand/hpe-wordmark.svg` is vendored from HPE Design's official public
+brand repository:
+
+`https://github.com/hpe-design/logos/blob/master/HPE%20Primary%20Logo%20-%20SVG/hpe-logo-color.svg`
+
+HPE's current web-header mark is published at:
 
 `https://www.hpe.com/apps/hpeweb-ui/images/gn-icons/logo-lm.svg`
 

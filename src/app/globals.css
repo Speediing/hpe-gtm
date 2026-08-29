@@ -329,7 +329,6 @@ button:active:not(:focus-visible),
   text-decoration: none;
 }
 
-.brand-hpe,
 .brand-sxai {
   display: block;
   width: auto;
@@ -339,8 +338,23 @@ button:active:not(:focus-visible),
   object-fit: contain;
 }
 
-.brand-hpe {
+.brand-hpe-frame {
+  position: relative;
+  display: block;
+  flex: none;
   height: var(--brand-h);
+  overflow: hidden;
+  aspect-ratio: 2.74;
+}
+
+.brand-hpe {
+  position: absolute;
+  top: -168%;
+  left: -194%;
+  display: block;
+  width: auto;
+  max-width: none;
+  height: 443%;
 }
 
 .brand-sxai {

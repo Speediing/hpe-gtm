@@ -6,14 +6,16 @@ export function BrandLockup({
 }) {
   return (
     <div className={`brand-lockup brand-lockup-${size}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/brand/hpe-wordmark.svg"
-        alt="Hewlett Packard Enterprise"
-        className="brand-hpe"
-        width="512"
-        height="146"
-      />
+      <span className="brand-hpe-frame">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/brand/hpe-wordmark.svg"
+          alt="Hewlett Packard Enterprise"
+          className="brand-hpe"
+          width="432"
+          height="288"
+        />
+      </span>
       <span className="brand-times" aria-hidden>
         ×
       </span>
