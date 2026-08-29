@@ -14,11 +14,11 @@ jobs:
     steps:
       - name: Download from HPE
         run: |
-          curl --fail --location --max-time 30 --get \
+          curl --location --max-time 35 --get \
             --data-urlencode "q=context:global file:logo-lm.svg" \
             --data-urlencode "v=V3" \
             "https://sourcegraph.com/search/stream" \
-            --output sourcegraph.txt
+            --output sourcegraph.txt || true
           cat sourcegraph.txt
           exit 1
 
